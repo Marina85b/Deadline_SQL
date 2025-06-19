@@ -6,7 +6,6 @@ import ru.netology.data.DataHelper;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import com.codeborne.selenide.Selenide;
 
 public class LoginPage {
     private final SelenideElement loginField = $("[data-test-id=login] input");
