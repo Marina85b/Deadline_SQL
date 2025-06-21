@@ -30,7 +30,7 @@ class BankLoginTest {
     // метод перед каждым автотестом открытием страницы помещаем ее в переменную LoginPage
     @BeforeEach
     void setUp() {
-        loginPage = open("http://localhost:9999", LoginPage.class);
+        loginPage = open("http://localhost:7777", LoginPage.class);
     }
 
     @Test
@@ -67,12 +67,17 @@ class BankLoginTest {
     void shouldLockAfterThreeUnsuccessfulPasswords() {
         var authInfo = DataHelper.generateRandomUser();
         var verificationPage = loginPage.validLogin(authInfo);
-        verificationPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
+        loginPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
+
         for (int count = 0; count < 3; count++) {
+            loginPage.reload();
             loginPage.validLogin(DataHelper.generateRandomUser());
         }
-        verificationPage.verifyErrorNotification("Превышено максимальное количество попыток авторизации");
+
+        loginPage.verifyErrorNotification("Превышено максимальное количество попыток авторизации");
     }
+
+
 }
 
 

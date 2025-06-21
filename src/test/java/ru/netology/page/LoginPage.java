@@ -6,6 +6,7 @@ import ru.netology.data.DataHelper;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.refresh;
 
 public class LoginPage {
     private final SelenideElement loginField = $("[data-test-id=login] input");
@@ -26,12 +27,16 @@ public class LoginPage {
     }
 
     public void login(DataHelper.AuthInfo info) {
-        loginField.setValue("");
-        loginField.setValue(info.getLogin());
-        passwordField.setValue("");
-        passwordField.setValue(info.getPassword());
-        loginButton.click();
+            loginField.setValue(info.getLogin());
+            passwordField.setValue(info.getPassword());
+            loginButton.click();
     }
+
+    public void reload() {
+        refresh(); // теперь всё должно работать
+        loginField.shouldBe(visible);
+    }
+
 
 }
 
