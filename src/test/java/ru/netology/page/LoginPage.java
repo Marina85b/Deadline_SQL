@@ -33,7 +33,7 @@ public class LoginPage {
     }
 
     public void reload() {
-        refresh(); // теперь всё должно работать
+        refresh();
         loginField.shouldBe(visible);
     }
 
